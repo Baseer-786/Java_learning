@@ -26,7 +26,7 @@ Look for the README.md files within each folder for detailed explanations of con
 
 Let's Connect
 
-eetCode: My LeetCode Profile
+LeetCode: My LeetCode Profile
 GitHub: My GitHub Profile
 LinkedIn: Connect on LinkedIn
 
