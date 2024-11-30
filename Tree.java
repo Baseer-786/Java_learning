@@ -203,6 +203,130 @@ private void searchBT(TreeNode root, String path, List<String> answer) {
 }
         
     }
+//Flatten Binary Tree to Linked List
+class Solution {
+    public void flatten(TreeNode root) {
+        TreeNode cur = root;
+        TreeNode prev = null;
+        while(cur != null){
+            if(cur.left != null){
+                prev = cur.left;
+                while(prev.right != null){
+                    prev = prev.right;
+                }
+                prev.right = cur.right;
+                cur.right = cur.left;
+
+                cur.left = null;
+            }
+                cur = cur.right;
+        }
+    }
+    
+}
+
+//Search in a Binary Search Tree
+
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        while(root != null && root.val != val){
+          if(val < root.val ){
+             root = root.left;
+          }else{
+            root = root.right;
+        }
+         System.gc();
+
+    }
+        return root;
+    }
+} 
+
+// Insert into a Binary Search Tree
+class Solution {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val); 
+        }
+
+        TreeNode cur = root; 
+        while (true) {
+            if (val > cur.val) {
+                if (cur.right != null) {
+                    cur = cur.right; 
+                } else {
+                    cur.right = new TreeNode(val);
+                    break;
+                }
+            } else {
+                if (cur.left != null) {
+                    cur = cur.left; 
+                } else {
+                    cur.left = new TreeNode(val); 
+                    break;
+                }
+            }
+        }
+        System.gc();
+        return root;
+    }
+}
+
+
+
+//450. Delete Node in a BST  
+//Input: root = [5,3,6,2,4,null,7], key = 3
+//Output: [5,4,6,2,null,null,7]
+class Solution {
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if(root == null) {
+            return null;
+        }if(root.val == key ){
+            return helper(root);
+        }
+        TreeNode dummy = root;
+        while(root != null){
+            if(root.val > key){
+            if(root.left != null && root.left.val == key){
+                root.left = helper(root.left);
+                break;
+            }else{
+                 root = root.left;
+            }   
+        }else {
+                if(root.right != null && root.right.val == key){
+                root.right = helper(root.right);
+                break;
+                }else{
+                     root = root.right;
+                }
+            }    
+        }
+             System.gc(); 
+            return dummy;
+            
+    }
+    public TreeNode helper(TreeNode root){
+        if(root.left  == null){
+           return root.right;
+        }
+        if(root.right == null){
+            return root.left;
+        }
+       TreeNode rightChild = root.right;
+       TreeNode lastRight = findLastRight(root.left);
+        lastRight.right = rightChild;
+        return root.left;
+    }
+    public TreeNode findLastRight(TreeNode root){
+        if(root.right == null){
+            return root;
+        }
+        return findLastRight(root.right);
+    }
+  
+}
+
 
 
 
